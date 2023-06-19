@@ -7,20 +7,23 @@ namespace RegexProblem
         static void Main(string[] args)
         {
 
-            string pattern = "fox(es)?";
-            string input = "@\"foxes are omnivorous mammals belonging to several genera of the family Canidae fox.\"";
+            string[] fileNames = { "image.jpg", "photo.png", "document.docx", "picture.gif", "data.csv" };
+            string pattern = @"^.+\.(jpg|jpeg|png|gif)$";
 
-            int count = CountPatternOccurrences(pattern, input);
-            Console.WriteLine("There are {0} occurrences.", count);
-        }
-
-        static int CountPatternOccurrences(string pattern, string input)
-        {
-            Regex regex = new Regex(pattern);
-            MatchCollection matches = regex.Matches(input);
-            return matches.Count;
+            foreach (string fileName in fileNames)
+            {
+                if (Regex.IsMatch(fileName, pattern, RegexOptions.IgnoreCase))
+                {
+                    Console.WriteLine($"{fileName} is a valid image file name.");
+                }
+                else
+                {
+                    Console.WriteLine($"{fileName} is not a valid image file name.");
+                }
+            }
         }
     }
 }
+
 
     
