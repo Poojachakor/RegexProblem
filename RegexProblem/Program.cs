@@ -6,25 +6,29 @@ namespace RegexProblem
     {
         static void Main(string[] args)
         {
-           
-            string input = "abb";
 
-            
-            string pattern = @"a{1}b{2,3}";
+            Console.Write("Enter a string: ");
+            string input = Console.ReadLine();
 
-            
-            Regex regex = new Regex(pattern);
+            string pattern = @"\b[a-z]+(?:_[a-z]+)+\b";
+            MatchCollection matches = Regex.Matches(input, pattern);
 
-            
-            if (regex.IsMatch(input))
+            if (matches.Count > 0)
             {
-                Console.WriteLine("String matched the pattern!");
+                Console.WriteLine("Found the following sequences of lowercase letters joined by an underscore:");
+                foreach (Match match in matches)
+                {
+                    Console.WriteLine(match.Value);
+                }
             }
             else
             {
-                Console.WriteLine("String did not match the pattern!");
+                Console.WriteLine("No sequences of lowercase letters joined by an underscore found.");
             }
+
+            Console.ReadKey();
         }
     }
 }
+    
     
