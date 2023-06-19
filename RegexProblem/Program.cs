@@ -7,15 +7,18 @@ namespace RegexProblem
         static void Main(string[] args)
         {
 
-            string input = "<p>The <code>Regex</code> is a compiled representation of a regular expression.</p>";
-            string pattern = @"<[^>]+>";
+            string pattern = "fox(es)?";
+            string input = "@\"foxes are omnivorous mammals belonging to several genera of the family Canidae fox.\"";
 
-            MatchCollection matches = Regex.Matches(input, pattern);
+            int count = CountPatternOccurrences(pattern, input);
+            Console.WriteLine("There are {0} occurrences.", count);
+        }
 
-            foreach (Match match in matches)
-            {
-                Console.WriteLine(match.Value);
-            }
+        static int CountPatternOccurrences(string pattern, string input)
+        {
+            Regex regex = new Regex(pattern);
+            MatchCollection matches = regex.Matches(input);
+            return matches.Count;
         }
     }
 }
