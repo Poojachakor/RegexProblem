@@ -7,28 +7,17 @@ namespace RegexProblem
         static void Main(string[] args)
         {
 
-            Console.Write("Enter a string: ");
-            string input = Console.ReadLine();
+            string input = "<p>The <code>Regex</code> is a compiled representation of a regular expression.</p>";
+            string pattern = @"<[^>]+>";
 
-            string pattern = @"\b[a-z]+(?:_[a-z]+)+\b";
             MatchCollection matches = Regex.Matches(input, pattern);
 
-            if (matches.Count > 0)
+            foreach (Match match in matches)
             {
-                Console.WriteLine("Found the following sequences of lowercase letters joined by an underscore:");
-                foreach (Match match in matches)
-                {
-                    Console.WriteLine(match.Value);
-                }
+                Console.WriteLine(match.Value);
             }
-            else
-            {
-                Console.WriteLine("No sequences of lowercase letters joined by an underscore found.");
-            }
-
-            Console.ReadKey();
         }
     }
 }
-    
+
     
